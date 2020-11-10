@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function FilterTodo({
   onAllFilterTodo,
@@ -15,3 +16,9 @@ function FilterTodo({
 }
 
 export default FilterTodo;
+
+FilterTodo.propTypes = {
+  onAllFilterTodo: PropTypes.func.isRequired,
+  onCompleteFilterTodo: PropTypes.func.isRequired,
+  onNonCompleteFilterTodo: PropTypes.func.isRequired,
+};

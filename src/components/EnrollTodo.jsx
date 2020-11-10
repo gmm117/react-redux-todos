@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function EnrollTodo({ onAddTodo }) {
   const [text, setText] = useState('');
@@ -21,3 +22,7 @@ function EnrollTodo({ onAddTodo }) {
 }
 
 export default EnrollTodo;
+
+EnrollTodo.propTypes = {
+  onAddTodo: PropTypes.func.isRequired,
+};

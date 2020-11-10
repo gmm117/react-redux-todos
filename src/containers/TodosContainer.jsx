@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { addTodo, toggleTodo, removeTodo } from '../modules/todos';
 import {
   FILTER_ALL,
@@ -19,13 +19,15 @@ function selectTodos(todos, filter) {
       return todos.filter((todo) => todo.completed);
     case FILTER_NONCOMPLETE:
       return todos.filter((todo) => !todo.completed);
+    default:
+      return todos;
   }
 }
 
-function TodosContainer() {
+function TodosContainer({ useTodoDispatch }) {
+  const dispatch = useTodoDispatch();
   const todos = useSelector((state) => state.todos);
   const visibility = useSelector((state) => state.visibility);
-  const dispatch = useDispatch();
 
   const onAddTodo = (text) => dispatch(addTodo(text));
   const onToggle = (id) => dispatch(toggleTodo(id));
@@ -35,11 +37,7 @@ function TodosContainer() {
   const onCompleteFilterTodo = () => dispatch(completeFilterTodo());
   const onNonCompleteFilterTodo = () => dispatch(nonCompleteFilterTodo());
 
-  const activeUsers = useCallback(selectTodos(todos, visibility), [
-    todos,
-    visibility,
-  ]);
-
+  const activeUsers = selectTodos(todos, visibility);
   return (
     <Todos
       todos={activeUsers}

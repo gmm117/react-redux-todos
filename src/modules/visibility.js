@@ -8,24 +8,30 @@ export const FILTER_NONCOMPLETE = 'todos/SHOW_NONCOMPLETE';
 export const allFilterTodo = () => {
   return {
     type: FILTER_TODO,
-    filter: FILTER_ALL,
+    payload: {
+      filter: FILTER_ALL,
+    },
   };
 };
 
 export const completeFilterTodo = () => ({
   type: FILTER_TODO,
-  filter: FILTER_COMPLETE,
+  payload: {
+    filter: FILTER_COMPLETE,
+  },
 });
 
 export const nonCompleteFilterTodo = () => ({
   type: FILTER_TODO,
-  filter: FILTER_NONCOMPLETE,
+  payload: {
+    filter: FILTER_NONCOMPLETE,
+  },
 });
 
 export default function visibility(state = FILTER_ALL, action) {
   switch (action.type) {
     case FILTER_TODO:
-      return action.filter;
+      return action.payload.filter;
     default:
       return state;
   }

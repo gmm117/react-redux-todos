@@ -8,32 +8,39 @@ const TOGGLE_TODO = 'todos/TOGGLE_TODO';
 // Action Creators
 export const addTodo = (text) => ({
   type: ADD_TODO,
-  id: uuidv4(),
-  text,
+  payload: {
+    id: uuidv4(),
+    text,
+  },
 });
 
 export const toggleTodo = (id) => ({
   type: TOGGLE_TODO,
-  id,
+  payload: {
+    id,
+  },
 });
 
 export const removeTodo = (id) => ({
   type: REMOVE_TODO,
-  id,
+  payload: {
+    id,
+  },
 });
 
 // Reducer
 export default function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
+      const { id, text } = action.payload;
       return state.concat({
-        id: action.id,
-        text: action.text,
+        id: id,
+        text: text,
         completed: false,
       });
     case TOGGLE_TODO:
       return state.map((data) =>
-        data.id === action.id
+        data.id === action.payload.id
           ? {
               ...data,
               completed: !data.completed,
@@ -41,7 +48,7 @@ export default function todos(state = [], action) {
           : data
       );
     case REMOVE_TODO:
-      return state.filter((data) => data.id !== action.id);
+      return state.filter((data) => data.id !== action.payload.id);
     default:
       return state;
   }

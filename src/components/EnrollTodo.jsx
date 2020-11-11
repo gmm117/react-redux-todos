@@ -14,7 +14,7 @@ function EnrollTodo({ onAddTodo }) {
   };
 
   return (
-    <div style={{ paddingBottom: '10px' }}>
+    <div className="paddingBottom">
       <input onChange={onChange} value={text} />
       <button onClick={onClick}>등록</button>
     </div>

@@ -52,3 +52,7 @@ function TodosContainer({ useTodoDispatch }) {
 }
 
 export default TodosContainer;
+
+TodosContainer.propTypes = {
+  useTodoDispatch: PropTypes.func.isRequired,
+};

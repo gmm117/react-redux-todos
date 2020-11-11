@@ -1,7 +1,8 @@
 import React, { createContext, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import './App.css';
-import TodosContainer from './containers/TodosContainer';
+// import TodosContainer from './containers/TodosContainer';
+import TodosContainerConnect from './containers/TodosContainerConnect';
 const TodosDispatchContext = createContext(null);
 
 function useTodoDispatch() {
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <TodosDispatchContext.Provider value={dispatch}>
-      <TodosContainer useTodoDispatch={useTodoDispatch} />
+      <TodosContainerConnect useTodoDispatch={useTodoDispatch} />
     </TodosDispatchContext.Provider>
   );
 }
